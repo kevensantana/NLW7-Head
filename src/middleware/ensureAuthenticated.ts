@@ -13,7 +13,7 @@ export function ensureAuthenticated(request: Request, response: Response, next: 
             errorCode: "Token.invalid",
         });
     }
-
+  
     const [,token ] = authToken.split(" ") 
 
     try{

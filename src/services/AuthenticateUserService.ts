@@ -2,7 +2,6 @@ import axios from "axios"
 import prismaClient from '../prisma';
 import { sign } from "jsonwebtoken"
 
-
 interface IAccessTokenResponse {
    access_token: string
 }
@@ -13,7 +12,6 @@ interface IUserResponse {
    id: number,
    name: string
 }
-
 
 class AuthenticateUserService {
    async execute(code: string) {
@@ -29,8 +27,6 @@ class AuthenticateUserService {
          headers: {
             "Accept": "application/json"
          }
-
-
       })
 
       const response = await axios.get<IUserResponse>("https://api.github.com/user", {
@@ -38,7 +34,6 @@ class AuthenticateUserService {
             authorization: `Bearer ${accessTokenResponse.access_token}`
          }
       });
-
 
       const { login, id, avatar_url, name } = response.data
 
@@ -78,6 +73,5 @@ class AuthenticateUserService {
       return { token, user};
    }
 }
-
 
 export { AuthenticateUserService }
